@@ -54,5 +54,18 @@ describe('goals', function(){
       });
     });
   });
+
+  describe('post /goals', function(){
+    it('should show the new goals page', function(done){
+      request(app)
+      .post('/goals')
+      .set('cookie', cookie)
+      .send('name=be+a+doctor&due=2014-11-30&tags=a%2Cb%2Cc%2Cd')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        done();
+      });
+    });
+  });
 });
 
